@@ -23,26 +23,26 @@ jobs:
           node-version: 20
 
       - name: Install backend dependencies
-        working-directory: server
+        working-directory: devops-youtube-course-2025/server
         run: npm ci
 
       - name: Lint backend
-        working-directory: server
+        working-directory: devops-youtube-course-2025/server
         run: npm run lint -- --max-warnings=0
 
       - name: Install frontend dependencies
-        working-directory: client
+        working-directory: devops-youtube-course-2025/client
         run: npm ci
 
       - name: Lint frontend
-        working-directory: client
+        working-directory: devops-youtube-course-2025/client
         run: npm run lint -- --max-warnings=0
 
       - name: Build backend image
-        run: docker build -t backend ./server
+        run: docker build -t backend ./devops-youtube-course-2025/server
 
       - name: Build frontend image
-        run: docker build -t frontend ./client
+        run: docker build -t frontend ./devops-youtube-course-2025/client
 
   deploy:
     needs: build-and-lint
